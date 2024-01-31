@@ -36,59 +36,59 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: RABBITMQ_HOST
-            value: {{ .Values.rabbitmqHost }}
+            value: {{ .Values.rabbitmqHost | quote }}
           - name: RABBITMQ_PORT
-            value: {{ .Values.rabbitmqPort }}
+            value: {{ .Values.rabbitmqPort | quote }}
           - name: RABBITMQ_USERNAME
-            value: {{ .Values.rabbitmqUserName }}
+            value: {{ .Values.rabbitmqUserName | quote }}
           - name: RABBITMQ_PASSWORD
-            value: {{ .Values.rabbitmqPassword }}
+            value: {{ .Values.rabbitmqPassword | quote }}
           - name: POSTGRESQL_URL
-            value: {{ .Values.postgressUrl }}
+            value: {{ .Values.postgressUrl | quote }}
           - name: POSTGRESQL_USERNAME
-            value: {{ .Values.postgressUser }}
+            value: {{ .Values.postgressUser | quote }}
           - name: POSTGRESQL_PASSWORD
-            value: {{ .Values.postgressPassword }}
+            value: {{ .Values.postgressPassword | quote }}
           - name: POSTGRESQL_ADMIN_PASSWORD
-            value: {{ .Values.postgressAdminpassword }}   
+            value: {{ .Values.postgressAdminpassword | quote }}   
           - name: MATRIX_QUEUE
-            value: {{ .Values.matrix }}
+            value: {{ .Values.matrix | quote }}
           - name: LOG_QUEUE
-            value: {{ .Values.log }}
+            value: {{ .Values.log | quote }}
           - name: CACHE_EVENT_QUEUE
-            value: {{ .Values.cacheEventQueue }}
+            value: {{ .Values.cacheEventQueue | quote }}
           - name: EXCHANGE
-            value: {{ .Values.exchange }}
+            value: {{ .Values.exchange | quote }}
           - name: MATRIX_ROUTING_KEY
-            value: {{ .Values.matrixRoutingKey }}
+            value: {{ .Values.matrixRoutingKey | quote }}
           - name: LOG_ROUTING_KEY
-            value: {{ .Values.logRoutingKey }}
+            value: {{ .Values.logRoutingKey | quote }}
           - name: CACHE_EVENT_ROUTING_KEY
-            value: {{ .Values.cacheEventRoutingKey}}
+            value: {{ .Values.cacheEventRoutingKey | quote }}
           - name: MARIADB_URI
-            value: {{ .Values.mariadbUri }}
+            value: {{ .Values.mariadbUri | quote }}
           - name: MARIADB_USERNAME
-            value: {{ .Values.mariadbUserName }}
+            value: {{ .Values.mariadbUserName | quote }}
           - name: MARIADB_PASSWORD
-            value: {{ .Values.mariadbPassowrd }}
+            value: {{ .Values.mariadbPassowrd | quote }}
           - name: RECOMMENDATION_QUEUE
-            value: {{ .Values.recomendationQueue }}
+            value: {{ .Values.recomendationQueue | quote }}
           - name: RECOMMENDATION_ROUTING_KEY
-            value: {{ .Values.recommendationRoutingKey }}
+            value: {{ .Values.recommendationRoutingKey | quote }}
           - name: EMAIL_PORT
-            value: {{ .Values.emailPort }}
+            value: {{ .Values.emailPort | quote }}
           - name: EMAIL_ID
-            value: {{ .Values.emailId }}
+            value: {{ .Values.emailId | quote }}
           - name: EMAIL_PASSWORD
-            value: {{ .Values.emailPassword }}
+            value: {{ .Values.emailPassword | quote }}
           - name: MAIL_QUEUE
-            value: {{ .Values.mailQueue }}
+            value: {{ .Values.mailQueue | quote }}
           - name: MAIL_ROUTING_KEY
-            value: {{ .Values.mailRoutingKey }}
+            value: {{ .Values.mailRoutingKey | quote }}
           - name: WEBHOOK_URL
-            value: {{ .Values.webhookUrl }}
+            value: {{ .Values.webhookUrl | quote }}
           - name: EMAIL_TO
-            value: {{ .Values.emailTo }}
+            value: {{ .Values.emailTo | quote }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
