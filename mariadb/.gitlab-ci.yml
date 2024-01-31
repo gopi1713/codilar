@@ -1,0 +1,9 @@
+image: curlimages/curl:latest
+
+stages:
+  - upload
+
+upload:
+  stage: upload
+  script:
+    - 'curl --request POST --user $USER:$access_token --form "chart=@database-0.1.1.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"'
