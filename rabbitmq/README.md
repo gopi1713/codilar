@@ -34,7 +34,7 @@ Codilar charts can be used with [Kubeapps](https://kubeapps.dev/) for deployment
 To install the chart with the release name `my-release`:
 
 ```bash
-$ helm install my-release codilar/mariadb
+$ helm install my-release codilar/rabbitmq
 ```
 
 The command deploys MariaDB on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be configured during installation.
@@ -52,20 +52,3 @@ $ helm delete my-release
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Parameters
-
-
-
-### MariaDB common parameters
-
-| Name                       | Description                                                                                                                                                                                                                                                                   | Value                 |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `image.registry`           | MariaDB image registry                                                                                                                                                                                                                                                        | `docker.io`           |
-| `image.repository`         | MariaDB image repository                                                                                                                                                                                                                                                      | `mariadb`     |
-| `image.tag`                | MariaDB image tag (immutable tags are recommended)                                                                                                                                                                                                                            | `10.10` |
-| `image.digest`             | MariaDB image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag                                                                                                                                                                       | `""`                  |
-| `image.pullPolicy`         | MariaDB image pull policy                                                                                                                                                                                                                                                     | `IfNotPresent`        |
-| `image.pullSecrets`        | Specify docker-registry secret names as an array                                                                                                                                                                                                                              | `[]`                  |
-| `auth.rootPassword`        | Password for the `root` user. Ignored if existing secret is provided.                                                                                                                                                                                                         | `""`                  |
-| `auth.database`            | Name for a custom database to create                                                                                                                                                                                                                                          | `my_database`         |
-| `auth.username`            | Name for a custom user to create                                                                                                                                                                                                                                              | `""`                  |
-| `auth.password`            | Password for the new user. Ignored if existing secret is provided                                                                                                                                                                                                             | `""`                  |
