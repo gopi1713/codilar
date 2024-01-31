@@ -15,7 +15,7 @@ entries:
       description: Deploy a basic RabbitMQ-Management linux pod
       digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
       home: https://helm.sh/helm
-      name: RabbitMQ
+      name: rabbitmq
       sources:
       - https://helm.codilar.dev/
       version: 1.1.0
@@ -24,7 +24,7 @@ entries:
       description: Deploy a basic TimescaleDB linux pod
       digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
       home: https://helm.sh/helm
-      name: TimescaleDB
+      name: timescaleDB
       sources:
       - https://helm.codilar.dev/
       version: 1.0.0            
