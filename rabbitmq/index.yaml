@@ -9,6 +9,6 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/rabbitmq-1.1.0.tgz
-      version: 1.1.0
+      - https://gopi1713.github.io/codilar/rabbitmq-1.1.1.tgz
+      version: 1.1.1
 generated: "2024-01-31T11:18:11.2193318+05:30"
