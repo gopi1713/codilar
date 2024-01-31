@@ -9,4 +9,4 @@ spec:
   - port: 3306
   selector:
     {{- include "database.selectorLabels" . | nindent 4 }}
-  clusterIP: None
+  type: ClusterIP

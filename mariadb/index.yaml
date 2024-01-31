@@ -9,6 +9,6 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/database-1.1.0.tgz
-      version: 1.1.1
+      - https://gopi1713.github.io/codilar/database-1.1.2.tgz
+      version: 1.1.2
 generated: "2024-01-31T11:30:20.4708598+05:30"

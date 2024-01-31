@@ -10,8 +10,8 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/database-1.1.1.tgz
-      version: 1.1.1
+      - https://gopi1713.github.io/codilar/database-1.1.2.tgz
+      version: 1.1.2
   rabbitmq:
     - created: 2024-01-31T11:18:06.7940939+05:30
       description: Deploy a basic RabbitMQ-Management linux pod
@@ -32,8 +32,8 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/timescaledb-1.1.0.tgz
-      version: 1.1.0    
+      - https://gopi1713.github.io/codilar/timescaledb-1.1.1.tgz
+      version: 1.1.1    
   analytics:
     - created: 2024-01-31T11:18:06.7940939+05:30
       description: Deploy a basic analytics service

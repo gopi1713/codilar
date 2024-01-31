@@ -3,5 +3,5 @@ name: database
 description: A Helm chart for MariaDB
 icon: https://mariadb.com/wp-content/webp-express/webp-images/doc-root/wp-content/themes/mariadb-sage/public/images/mariadb-logo-mark.88b2ec.png.webp
 type: application
-version: 1.1.1
+version: 1.1.2
 appVersion: "10.10"
