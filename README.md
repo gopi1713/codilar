@@ -8,9 +8,16 @@ Popular applications, provided by [Codilar](https://www.codilar.com), ready to l
 
 
 
-```
+
 
 ## Before you begin
+Add the repo
+
+```bash
+$ helm repo add codilar https://helm.codilar.dev/
+$ helm repo update
+$ helm search repo codilar  ----> To get the required charts
+```
 
 ### Prerequisites
 
