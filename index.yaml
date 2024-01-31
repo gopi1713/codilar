@@ -54,6 +54,6 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/cWarmerApp-1.0.0.tgz
-      version: 1.0.0    
+      - https://gopi1713.github.io/codilar/cWarmerApp-1.1.0.tgz
+      version: 1.1.0    
 generated: 2024-01-30T16:23:20.499029981-06:00
