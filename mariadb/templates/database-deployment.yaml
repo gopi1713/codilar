@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: StatefulSet 
+metadata:
+  name: {{ include "database.fullname" . }}
+  labels:
+    {{- include "database.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "database.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "database.fullname" . }}   
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "database.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: MARIADB_DATABASE
+          value: {{ .Values.databaseName }}
+        - name: MARIADB_USER
+          value: {{ .Values.user }}
+        - name: MARIADB_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              key: password
+              name: {{ .Release.Name }}-mysql-secret
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              key: root-password
+              name: {{ .Release.Name }}-mysql-secret
+        ports:
+        - containerPort: 3306
+          name: mysql
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        volumeMounts:
+        - name: "{{ .Release.Name }}-database-pvc"
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: "{{ .Release.Name }}-database-pvc"
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.persisted.storage }}    
