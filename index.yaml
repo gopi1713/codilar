@@ -43,8 +43,8 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/analytics-0.1.3.tgz
-      version: 0.1.3
+      - https://gopi1713.github.io/codilar/analytics-0.1.4.tgz
+      version: 0.1.4
   cwarmerapp:
     - created: 2024-01-31T11:18:06.7940939+05:30
       description: Deploy a basic cWarmerApp Service
