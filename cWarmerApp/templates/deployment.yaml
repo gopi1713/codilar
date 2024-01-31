@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: StatefulSet 
 metadata:
-  name: {{ include "cWarmerApp.fullname" . }}
+  name: {{ include "cwarmerapp.fullname" . }}
   labels:
-    {{- include "cWarmerApp.labels" . | nindent 4 }}
+    {{- include "cwarmerapp.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      {{- include "cWarmerApp.selectorLabels" . | nindent 6 }}
-  serviceName: {{ include "cWarmerApp.fullname" . }}   
+      {{- include "cwarmerapp.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "cwarmerapp.fullname" . }}   
   replicas: {{ .Values.replicas }}
   template:
     metadata:
@@ -17,7 +17,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "cWarmerApp.selectorLabels" . | nindent 8 }}
+        {{- include "cwarmerapp.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -74,6 +74,6 @@ spec:
           value:  {{ .Values.nextPublicJavaApiHost | quote }}
         ports:
         - containerPort: 3000
-          name: cWarmerApp
+          name: cwarmerapp
         resources:
           {{- toYaml .Values.resources | nindent 12 }}  
