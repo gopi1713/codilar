@@ -10,4 +10,22 @@ entries:
       sources:
       - https://helm.codilar.dev/
       version: 1.1.0
-generated: 2016-10-06T16:23:20.499029981-06:00
+  rabbitmq:
+    - created: 2016-10-06T16:23:20.499814565-06:00
+      description: Deploy a basic RabbitMQ-Management linux pod
+      digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
+      home: https://helm.sh/helm
+      name: RabbitMQ
+      sources:
+      - https://helm.codilar.dev/
+      version: 1.1.0
+  timescaleDB:
+    - created: 2016-10-06T16:23:20.499814565-06:00
+      description: Deploy a basic TimescaleDB linux pod
+      digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
+      home: https://helm.sh/helm
+      name: TimescaleDB
+      sources:
+      - https://helm.codilar.dev/
+      version: 1.0.0            
+generated: 2024-01-30T16:23:20.499029981-06:00
