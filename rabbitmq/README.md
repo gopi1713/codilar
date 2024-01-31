@@ -12,7 +12,7 @@ Trademarks: This software listing is packaged by Codilar. The respective tradema
 
 ```bash
 $ helm repo add codilar https://helm.codilar.dev/
-$ helm install my-release codilar/mariadb
+$ helm install my-release codilar/rabbitmq
 ```
 
 ## Introduction
