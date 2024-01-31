@@ -17,7 +17,6 @@ $ helm install my-release codilar/TimescaleDB
 
 ## Introduction
 
-This chart bootstraps a [TimescaleDB]( https://gitlab.codilar.in/api/v4/projects/703/packages/helm/stable) replication cluster deployment on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 TimescaleDB is developed as open source software and as a relational database it provides an SQL interface for accessing data. The latest versions of TimescaleDB also include GIS and JSON features.
 

@@ -1,62 +1,54 @@
-# Default values for analytics.
+# Default values for database.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+
+
+replicas: 1
 
 image:
-  repository: codilartech/analytics
-  pullPolicy: IfNotPresent
+  repository: codilartech/cwarmer-nodejs
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1"
+  tag: "1.1.11"
 
 imagePullSecrets: 
   - name: docker-registry-credentials
 nameOverride: ""
 fullnameOverride: ""
 
+rabbitmqHost: ""
+rabbitmqPort: "5672"
+rabbitmqUserName: ""
+rabbitmqPassword: ""
+rabbitmqTagQueue: "tag_processor"
+rabbitmqTagQueueV2: "tag_processor_v2"
+browserlessURL: ""
+awsAccessKey: ""
+awsScretKey: ""
+awsRegion: "ap-south-1"
+databaseUri: "jdbc:mariadb://db:3306/cwarmer"
+nextAuthURL: "https://cwarmer.codilar.dev"
+nextAuthSecret: ""
+emailId: ""
+emailPassword: "12345678"
+emailHost: "smtp.gmail.com"
+emailSecure: "true"
+emailPort: "465"
+javaURL: "http://analytics:8080"
+nextPublicJavaApiHost: "http://analytics:8080"
+
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
-  # Automatically mount a ServiceAccount's API credentials?
-  automount: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-
-rabbitmqHost: ""
-rabbitmqPort: "5672"
-rabbitmqUserName: ""
-rabbitmqPassword: ""
-postgressUrl: "jdbc:postgresql://timescaledb:5432/cwarmer"
-postgressUser: ""
-postgressPassword: ""
-postgressAdminpassword: ""
-matrix: "matrix"
-log: "log"
-cacheEventQueue: "cache_event"
-exchang: "analytics"
-matrixRoutingKey: "matrix_key"
-logRoutingKey: "log_key"
-cacheEventRoutingKey: "cache_event_key"
-mariadbUri: "jdbc:mariadb://db:3306/cwarmer"
-mariadbUserName: "root"
-mariadbPassowrd: "root"
-recomendationQueue: "recommendation"
-recommendationRoutingKey: "recommendation_key"
-emailPort: "587"
-emailId: ""
-emailPassword: "12345678"
-mailQueue: "mail"
-mailRoutingKey: "mail_key"
-webhookUrl: ""
-emailTo: ""
-
 podAnnotations: {}
-podLabels: {}
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -69,11 +61,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 8080
-
-
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -85,20 +72,6 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
-
-# Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
-
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
 
 nodeSelector: {}
 
