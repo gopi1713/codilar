@@ -6,7 +6,7 @@ metadata:
     {{- include "cWarmerApp.labels" . | nindent 4 }}
 spec:
   ports:
-  - port: 3306
+  - port: 3000
   selector:
     {{- include "cWarmerApp.selectorLabels" . | nindent 4 }}
   type: ClusterIP
