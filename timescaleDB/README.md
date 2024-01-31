@@ -11,7 +11,7 @@ Trademarks: This software listing is packaged by Codilar. The respective tradema
 ## TL;DR
 
 ```bash
-$ helm repo add --username $USER --password $PASSWORD codilar https://gitlab.codilar.in/api/v4/projects/703/packages/helm/stable
+$ helm repo add codilar https://helm.codilar.dev/
 $ helm install my-release codilar/TimescaleDB
 ```
 
