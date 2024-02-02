@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tag-process.fullname" . }}
+  labels:
+    {{- include "tag-process.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "tag-process.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "tag-process.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "tag-process.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: RABBITMQ_HOST
+            value: {{ .Values.rabbitmqHost | quote }}
+          - name: RABBITMQ_PORT
+            value: {{ .Values.rabbitmqPort | quote }}
+          - name: RABBITMQ_USERNAME
+            value: {{ .Values.rabbitmqUserName | quote }}
+          - name: RABBITMQ_PASSWORD
+            value: {{ .Values.rabbitmqPassword | quote }}
+          - name: POSTGRESQL_URL
+            value: {{ .Values.postgressUrl | quote }}
+          - name: POSTGRESQL_USERNAME
+            value: {{ .Values.postgressUser | quote }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ .Values.postgressPassword | quote }}
+          - name: NUMBER_OF_THREADS
+            value: {{ .Values.numberOfThreads | quote }}
+          - name: MAX_NUMBER_OF_THREADS
+            value: {{ .Values.maxNumberOfThreads | quote }}
+          - name: TABLE_NAME
+            value: {{ .Values.tableName | quote }}
+          - name: USER_EMAIL
+            value: {{ .Values.userEmail | quote }}
+          - name: CWARMER_USER_LOG_API_URL
+            value: {{ .values.cwarmerUserLogApiUrl | quote }}
+          - name: TOKEN
+            value: {{ .Values.token | quote }}
+          - name: RECOMMENDATION-SCHEDULE
+            value: {{ .Values.recommnedationSchedule | quote }}
+          - name: RECOMMENDATION_QUEUE 
+            value: {{ .Values.recommendationQueue | quote }}
+          - name: CACHE_EVENT_QUEUE
+            value: {{ .Values.cacheEventQueue | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
