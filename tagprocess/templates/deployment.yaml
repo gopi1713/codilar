@@ -58,7 +58,7 @@ spec:
           - name: USER_EMAIL
             value: {{ .Values.userEmail | quote }}
           - name: CWARMER_USER_LOG_API_URL
-            value: {{ .values.cwarmerUserLogApiUrl | quote }}
+            value: {{ .Values.cwarmerUserLogApiUrl | quote }}
           - name: TOKEN
             value: {{ .Values.token | quote }}
           - name: RECOMMENDATION-SCHEDULE

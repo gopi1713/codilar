@@ -76,6 +76,6 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/tagprocess-0.1.0.tgz
-      version: 0.1.0   
+      - https://gopi1713.github.io/codilar/tagprocess-0.1.1.tgz
+      version: 0.1.1
 generated: 2024-02-01T16:23:20.499029981-06:00
