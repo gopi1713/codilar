@@ -80,7 +80,7 @@ entries:
       version: 0.1.2
   botservice:
     - created: 2024-02-02T11:18:06.7940939+05:30
-      description: Deploy a tag service
+      description: Deploy a bot service
       digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
       home: https://helm.sh/helm
       name: web
@@ -88,5 +88,16 @@ entries:
       - https://helm.codilar.dev/
       urls:
       - https://gopi1713.github.io/codilar/botservice-0.1.0.tgz
-      version: 0.1.0    
+      version: 0.1.0   
+  cgs:
+    - created: 2024-02-02T11:18:06.7940939+05:30
+      description: Deploy a CGS service
+      digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
+      home: https://helm.sh/helm
+      name: web
+      sources:
+      - https://helm.codilar.dev/
+      urls:
+      - https://gopi1713.github.io/codilar/cgs-0.1.0.tgz
+      version: 0.1.0     
 generated: 2024-02-01T16:23:20.499029981-06:00
