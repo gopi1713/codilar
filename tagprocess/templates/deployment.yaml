@@ -43,6 +43,12 @@ spec:
             value: {{ .Values.rabbitmqUserName | quote }}
           - name: RABBITMQ_PASSWORD
             value: {{ .Values.rabbitmqPassword | quote }}
+          - name: MARIADB_URI
+            value: {{ .Values.mariadbUri | quote }}
+          - name: MARIADB_USERNAME
+            value: {{ .Values.mariadbUser | quote }}
+          - name: MARIADB_PASSWORD
+            value: {{ .Values.mariadbPassword | quote }}
           - name: POSTGRESQL_URL
             value: {{ .Values.postgressUrl | quote }}
           - name: POSTGRESQL_USERNAME
