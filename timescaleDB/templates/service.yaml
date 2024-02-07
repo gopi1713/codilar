@@ -9,4 +9,4 @@ spec:
   - port: 5432
   selector:
     {{- include "timescaledb.selectorLabels" . | nindent 4 }}
-  clusterIP: None
+  type: ClusterIP

@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "analytics.fullname" . }}
+  labels:
+    {{- include "analytics.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "analytics.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "analytics.labels" . | nindent 8 }}
+	{{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "analytics.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: RABBITMQ_HOST
+            value: {{ .Values.rabbitmqHost | quote }}
+          - name: RABBITMQ_PORT
+            value: {{ .Values.rabbitmqPort | quote }}
+          - name: RABBITMQ_USERNAME
+            value: {{ .Values.rabbitmqUserName | quote }}
+          - name: RABBITMQ_PASSWORD
+            value: {{ .Values.rabbitmqPassword | quote }}
+          - name: POSTGRESQL_URL
+            value: {{ .Values.postgressUrl | quote }}
+          - name: POSTGRESQL_USERNAME
+            value: {{ .Values.postgressUser | quote }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ .Values.postgressPassword | quote }}
+          - name: POSTGRESQL_ADMIN_PASSWORD
+            value: {{ .Values.postgressAdminpassword | quote }}   
+          - name: MATRIX_QUEUE
+            value: {{ .Values.matrix | quote }}
+          - name: LOG_QUEUE
+            value: {{ .Values.log | quote }}
+          - name: CACHE_EVENT_QUEUE
+            value: {{ .Values.cacheEventQueue | quote }}
+          - name: EXCHANGE
+            value: {{ .Values.exchange | quote }}
+          - name: MATRIX_ROUTING_KEY
+            value: {{ .Values.matrixRoutingKey | quote }}
+          - name: LOG_ROUTING_KEY
+            value: {{ .Values.logRoutingKey | quote }}
+          - name: CACHE_EVENT_ROUTING_KEY
+            value: {{ .Values.cacheEventRoutingKey | quote }}
+          - name: MARIADB_URI
+            value: {{ .Values.mariadbUri | quote }}
+          - name: MARIADB_USERNAME
+            value: {{ .Values.mariadbUserName | quote }}
+          - name: MARIADB_PASSWORD
+            value: {{ .Values.mariadbPassowrd | quote }}
+          - name: RECOMMENDATION_QUEUE
+            value: {{ .Values.recomendationQueue | quote }}
+          - name: RECOMMENDATION_ROUTING_KEY
+            value: {{ .Values.recommendationRoutingKey | quote }}
+          - name: EMAIL_PORT
+            value: {{ .Values.emailPort | quote }}
+          - name: EMAIL_ID
+            value: {{ .Values.emailId | quote }}
+          - name: EMAIL_PASSWORD
+            value: {{ .Values.emailPassword | quote }}
+          - name: MAIL_QUEUE
+            value: {{ .Values.mailQueue | quote }}
+          - name: MAIL_ROUTING_KEY
+            value: {{ .Values.mailRoutingKey | quote }}
+          - name: WEBHOOK_URL
+            value: {{ .Values.webhookUrl | quote }}
+          - name: EMAIL_TO
+            value: {{ .Values.emailTo | quote }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

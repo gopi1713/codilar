@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: StatefulSet 
+metadata:
+  name: {{ include "cwarmerapp.fullname" . }}
+  labels:
+    {{- include "cwarmerapp.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "cwarmerapp.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "cwarmerapp.fullname" . }}   
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "cwarmerapp.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: RABBITMQ_HOST
+          value: {{ .Values.rabbitmqHost | quote }}
+        - name: RABBITMQ_PORT
+          value: {{ .Values.rabbitmqPort | quote }}
+        - name: RABBITMQ_USERNAME
+          value: {{ .Values.rabbitmqUserName | quote }}
+        - name: RABBITMQ_PASSWORD
+          value: {{ .Values.rabbitmqPassword | quote }}
+        - name: RABBITMQ_TAGS_QUEUE
+          value: {{ .Values.rabbitmqTagQueue | quote }}
+        - name: RABBITMQ_TAGS_QUEUE_V2
+          value: {{ .Values.rabbitmqTagQueueV2 | quote }}          
+        - name: BROWSELESS_URL
+          value: {{ .Values.browserlessURL | quote }}
+        - name: AWS_ACCESS_KEY
+          value: {{ .Values.awsAccessKey | quote }}
+        - name: AWS_SECRET_KEY
+          value: {{ .Values.awsScretKey | quote }}
+        - name: REGION
+          value: {{ .Values.awsRegion | quote }}
+        - name: DATABASE_URL
+          value: {{ .Values.databaseUri | quote }}
+        - name: NEXTAUTH_URL
+          value: {{ .Values.nextAuthURL | quote }}
+        - name: NEXTAUTH_SECRET 
+          value: {{ .Values.nextAuthSecret | quote }}
+        - name: EMAIL
+          value: {{ .Values.emailId | quote }}
+        - name: PASS
+          value: {{ .Values.emailPassword | quote }}
+        - name: EMAIL_HOST
+          value: {{ .Values.emailHost | quote }}
+        - name: EMAIL_SECURE
+          value: {{ .Values.emailSecure | quote }}
+        - name: EMAIL_PORT
+          value: {{ .Values.emailPort | quote }}
+        - name: JAVA_URL
+          value: {{ .Values.javaURL | quote }}
+        - name: NEXT_PUBLIC_JAVA_API_HOST
+          value:  {{ .Values.nextPublicJavaApiHost | quote }}
+        ports:
+        - containerPort: 3000
+          name: cwarmerapp
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}  

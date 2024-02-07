@@ -1,0 +1,14 @@
+apiVersion: v1
+entries: 
+  web:
+    - created: 2024-02-01T11:18:06.7940939+05:30
+      description: Deploy a basic web Service
+      digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
+      home: https://helm.sh/helm
+      name: web
+      sources:
+      - https://helm.codilar.dev/
+      urls:
+      - https://gopi1713.github.io/codilar/web-0.1.2.tgz
+      version: 0.1.2
+generated: "2024-02-0 1T11:30:20.4708598+05:30"

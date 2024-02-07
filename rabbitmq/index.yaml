@@ -1,0 +1,14 @@
+apiVersion: v1
+entries: 
+  rabbitmq:
+    - created: 2024-01-31T11:18:06.7940939+05:30
+      description: Deploy a basic RabbitMQ-Management linux pod
+      digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
+      home: https://helm.sh/helm
+      name: rabbitmq
+      sources:
+      - https://helm.codilar.dev/
+      urls:
+      - https://gopi1713.github.io/codilar/rabbitmq-1.1.1.tgz
+      version: 1.1.1
+generated: "2024-01-31T11:18:11.2193318+05:30"

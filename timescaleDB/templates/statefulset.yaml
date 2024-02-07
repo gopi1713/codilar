@@ -40,13 +40,13 @@ spec:
               key: root-password
               name: {{ .Release.Name }}-timescaledb-secret
         ports:
-        - containerPort: 3306
+        - containerPort: 5432
           name: timescaledb
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
         volumeMounts:
         - name: "{{ .Release.Name }}-timescaledb-pvc"
-          mountPath: /var/lib/mysql
+          mountPath: /home/postgres/pgdata/data
   volumeClaimTemplates:
   - metadata:
       name: "{{ .Release.Name }}-timescaledb-pvc"

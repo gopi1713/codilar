@@ -1,0 +1,80 @@
+# Default values for database.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+
+replicas: 1
+
+image:
+  repository: codilartech/cwarmer-nodejs
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.1.11"
+
+imagePullSecrets: 
+  - name: docker-registry-credentials
+nameOverride: ""
+fullnameOverride: ""
+
+rabbitmqHost: ""
+rabbitmqPort: "5672"
+rabbitmqUserName: ""
+rabbitmqPassword: ""
+rabbitmqTagQueue: "tag_processor"
+rabbitmqTagQueueV2: "tag_processor_v2"
+browserlessURL: ""
+awsAccessKey: ""
+awsScretKey: ""
+awsRegion: "ap-south-1"
+databaseUri: "jdbc:mariadb://db:3306/cwarmer"
+nextAuthURL: "https://cwarmer.codilar.dev"
+nextAuthSecret: ""
+emailId: ""
+emailPassword: "12345678"
+emailHost: "smtp.gmail.com"
+emailSecure: "true"
+emailPort: "465"
+javaURL: "http://analytics:8080"
+nextPublicJavaApiHost: "http://analytics:8080"
+
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

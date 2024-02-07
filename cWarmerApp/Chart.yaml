@@ -1,0 +1,7 @@
+apiVersion: v2
+name: cwarmerapp
+description: A Helm chart for cWarmerApp
+icon: https://mariadb.com/wp-content/webp-express/webp-images/doc-root/wp-content/themes/mariadb-sage/public/images/mariadb-logo-mark.88b2ec.png.webp
+type: application
+version: 1.1.1
+appVersion: "1.1.11"
