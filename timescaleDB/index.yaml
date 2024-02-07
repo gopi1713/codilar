@@ -9,6 +9,6 @@ entries:
       sources:
       - https://helm.codilar.dev/
       urls:
-      - https://gopi1713.github.io/codilar/timescaledb-1.1.2.tgz
-      version: 1.1.2 
+      - https://gopi1713.github.io/codilar/timescaledb-1.1.3.tgz
+      version: 1.1.3
 generated: "2024-01-31T11:18:06.7940939+05:30"

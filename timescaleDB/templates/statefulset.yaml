@@ -25,6 +25,14 @@ spec:
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+      - name: volume-permissions
+        image: busybox
+        command: ["/bin/sh"]
+        args: ["-c", "chmod -R 755 /home/postgres/pgdata/data && chown 1000:1000 /home/postgres/pgdata/data"]
+        volumeMounts:
+        - name: "{{ .Release.Name }}-timescaledb-pvc"
+          mountPath: /home/postgres/pgdata/data 
       containers:
       - name: {{ .Chart.Name }}
         securityContext:
