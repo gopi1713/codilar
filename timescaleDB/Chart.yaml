@@ -3,5 +3,5 @@ name: timescaledb
 description: A Helm chart for timescaleDB
 type: application
 icon: https://www.timescale.com/static/logo-8d85a23f2d624c04a918313bd9f11cb6.svg
-version: 1.1.1
+version: 1.1.2
 appVersion: "15"
